@@ -18,20 +18,35 @@ class MyApp extends StatelessWidget {
           title: Text("Mes recettes"),
         ),
         body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text("Zamè facile",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.deepOrange, fontSize: 32
-                  )
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Text("Zamè facile",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, color: Colors.deepOrange, fontSize: 32
+                                )
+                            ),
+                          ),
+                          Text("Par Tantie J'ai Faim",
+                              style: TextStyle(
+                                  color: Colors.grey, fontSize: 28
+                              )
+                          )
+                        ],
+                      )
+                  ),
+                  Icon(Icons.favorite, color: Colors.red, size: 40,),
+                  Text("55", style: TextStyle(color: Colors.grey, fontSize: 28))
+                ],
               ),
-            ),
-            Text("Par Tantie J'ai Faim",
-                style: TextStyle(
-                    color: Colors.grey, fontSize: 28
-                )
             )
           ],
         )
