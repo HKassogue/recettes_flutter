@@ -49,10 +49,33 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            title_section
+            title_section,
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildButtonColumn(Colors.blue, Icons.comment, "Comment"),
+                  _buildButtonColumn(Colors.blue, Icons.share, "Share")
+                ],
+              ),
+            )
           ],
         )
       )
+    );
+  }
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Icon(icon, color: color, size: 40,),
+        ),
+        Text(label, style: TextStyle(color: color, fontSize: 28, fontWeight: FontWeight.w400))
+      ],
     );
   }
 }
