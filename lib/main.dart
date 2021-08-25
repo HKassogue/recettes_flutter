@@ -49,8 +49,43 @@ class MyApp extends StatelessWidget {
       ),
     );
 
+    Widget descriptionSection = Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Text("Ingrédients:", style: TextStyle(fontWeight: FontWeight.bold)),
+          Text("""- 3 tasses de riz (du riz parfume ou cassé)
+- 4 gros morceaux de poisson
+(de votre choix ou de la dorade)
+- 3 tomates fraîches, réduites en purée
+- 3 cuillères à soupe de concentré de tomate
+- 1 bouquet de persil, écrasée
+- 1 grosse carotte, épluchée et coupée en morceaux moyens
+- 2 pommes de terre, épluchées et coupées en morceaux
+- 1 gros oignon, émincé
+- 4 gousses d’ail, hachées finement
+- 2 petites aubergines, facultatif
+- 1 petit chou, coupé en 4 morceaux
+- 200ml d’huile d’arachide
+- 2 bouillons cube ou Maggi cube
+- 4 feuilles de laurier
+- 4 piments,
+- 1 cuillère à soupe de poivre noir
+- Sel
+- 6 petits gombos
+- 1 cuillère à soupe de Yété, Si disponible
+- 1 cuillère à soupe de Nététou (si disponible)
+- 5l d’eau chaude
+
+On peut aussi ajouter: 1 manioc doux, 1 patate douce, un peu de poisson fumé
+""", softWrap: true, textAlign: TextAlign.justify)
+        ]
+      )
+    );
+
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
@@ -58,10 +93,11 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Mes recettes"),
         ),
-        body: Column(
+        body: ListView(
           children: [
             title_section,
-            buttonsSection
+            buttonsSection,
+            descriptionSection
           ],
         )
       )
