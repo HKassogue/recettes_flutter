@@ -95,16 +95,21 @@ On peut aussi ajouter: 1 manioc doux, 1 patate douce, un peu de poisson fumé
         ),
         body: ListView(
           children: [
-            // Image.asset(
-            //  'images/zame.jpg',
-            //Image.network(
-            //  'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: 'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
-              width: 600,
-              height: 350,
-              fit: BoxFit.cover,
+            Stack(
+              children: [
+                Container(
+                  width: 600,
+                  height: 350,
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+                FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: 'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
+                  width: 600,
+                  height: 350,
+                  fit: BoxFit.cover,
+                )
+              ],
             ),
             title_section,
             buttonsSection,
