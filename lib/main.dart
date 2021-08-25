@@ -55,8 +55,7 @@ class MyApp extends StatelessWidget {
         children: [
           Text("Ingrédients:", style: TextStyle(fontWeight: FontWeight.bold)),
           Text("""- 3 tasses de riz (du riz parfume ou cassé)
-- 4 gros morceaux de poisson
-(de votre choix ou de la dorade)
+- 4 gros morceaux de poisson (de votre choix ou de la dorade)
 - 3 tomates fraîches, réduites en purée
 - 3 cuillères à soupe de concentré de tomate
 - 1 bouquet de persil, écrasée
@@ -95,6 +94,12 @@ On peut aussi ajouter: 1 manioc doux, 1 patate douce, un peu de poisson fumé
         ),
         body: ListView(
           children: [
+            Image.asset(
+              'images/zame.jpg',
+              width: 600,
+              height: 350,
+              fit: BoxFit.cover,
+            ),
             title_section,
             buttonsSection,
             descriptionSection
