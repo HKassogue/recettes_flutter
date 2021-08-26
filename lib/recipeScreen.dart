@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mon1erprojet/favoriteWidget.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -29,8 +30,7 @@ class RecipeScreen extends StatelessWidget {
                 ],
               )
           ),
-          Icon(Icons.favorite, color: Colors.red, size: 40,),
-          Text("55", style: TextStyle(color: Colors.grey, fontSize: 28))
+          FavoriteWidget()
         ],
       ),
     );
