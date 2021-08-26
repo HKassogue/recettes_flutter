@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                         )
                     ),
                   ),
-                  Text("Par Tantie J'ai Faim",
+                  Text("Par Oumou Bah",
                       style: TextStyle(
                           color: Colors.grey, fontSize: 28
                       )
@@ -79,7 +79,26 @@ class MyApp extends StatelessWidget {
 - 5l d’eau chaude
 
 On peut aussi ajouter: 1 manioc doux, 1 patate douce, un peu de poisson fumé
-""", softWrap: true, textAlign: TextAlign.justify)
+""", softWrap: true, textAlign: TextAlign.justify),
+          Text("Préparation:", style: TextStyle(fontWeight: FontWeight.bold)),
+          Text("""Étape 1: Préparer la farce pour le poisson:
+Mélanger le persil, la moitié de l’ail, un peu de piment, ajouter du sel et 1/2 d’une Maggi. Vous pouvez piller dans un mortier ou utiliser un robot culinaire.
+Ensuite, insérez le mélange dans les morceaux de poisson et faites frire.
+
+Étape 2: Faire la sauce de tomate:
+Faire chauffer l’huile, ajouter les oignons, les tomates, le concentré de tomates, l’ail restant, le poivre noir. Puis les faire frire pendant 15 minutes à feu moyen.
+Ensuite, ajoutez le poisson dans la sauce de tomate.
+Ajouter les bouillons cube (ou Maggi), avec les feuilles de laurier et 1 tasse d’eau.
+Ensuite, laissez mijoter jusqu’à ce que les morceaux de poisson soient bien cuits, 15 minutes environ.
+
+Étape 3: Préparer le riz:
+Retirer les morceaux de poisson et ajouter tout les légumes sauf le gombo avec 1 tasse d’eau et faire cuire les légumes jusqu’à ce qu’ils soient cuits (25 à 30 min).
+Vous devez veiller à ce que les légumes soient bien prêts avant de les retirer et aussi de ne pas trop les cuire.
+Ensuite retirez les légumes, puis ajoutez le gombo avec l’eau.
+Après 5 min enlever le gombo et ajouter le riz.
+Pour rendre le riz facile à cuisiner, vous pouvez le faire tremper dans de l’eau chaude pendant 20 minutes et lavez plusieurs fois avec de l’eau tiède.
+Faites cuire le riz à feu très doux, en retournant le thieboudienne souvent pour que tous les côtés soient bien cuits.
+Au moment de servir, placez le riz dans un plat et disposer les légumes et le poisson sur le dessus.""", softWrap: true, textAlign: TextAlign.justify)
         ]
       )
     );
