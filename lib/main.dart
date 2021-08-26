@@ -10,6 +10,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+      ),
+      home: RecipeScreen()
+    );
+  }
+}
+
+class RecipeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     Widget title_section = Container(
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -52,11 +67,11 @@ class MyApp extends StatelessWidget {
     );
 
     Widget descriptionSection = Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Text("Ingrédients:", style: TextStyle(fontWeight: FontWeight.bold)),
-          Text("""- 3 tasses de riz (du riz parfume ou cassé)
+        padding: const EdgeInsets.all(16),
+        child: Column(
+            children: [
+              Text("Ingrédients:", style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("""- 3 tasses de riz (du riz parfume ou cassé)
 - 4 gros morceaux de poisson (de votre choix ou de la dorade)
 - 3 tomates fraîches, réduites en purée
 - 3 cuillères à soupe de concentré de tomate
@@ -80,8 +95,8 @@ class MyApp extends StatelessWidget {
 
 On peut aussi ajouter: 1 manioc doux, 1 patate douce, un peu de poisson fumé
 """, softWrap: true, textAlign: TextAlign.justify),
-          Text("Préparation:", style: TextStyle(fontWeight: FontWeight.bold)),
-          Text("""Étape 1: Préparer la farce pour le poisson:
+              Text("Préparation:", style: TextStyle(fontWeight: FontWeight.bold)),
+              Text("""Étape 1: Préparer la farce pour le poisson:
 Mélanger le persil, la moitié de l’ail, un peu de piment, ajouter du sel et 1/2 d’une Maggi. Vous pouvez piller dans un mortier ou utiliser un robot culinaire.
 Ensuite, insérez le mélange dans les morceaux de poisson et faites frire.
 
@@ -99,35 +114,28 @@ Après 5 min enlever le gombo et ajouter le riz.
 Pour rendre le riz facile à cuisiner, vous pouvez le faire tremper dans de l’eau chaude pendant 20 minutes et lavez plusieurs fois avec de l’eau tiède.
 Faites cuire le riz à feu très doux, en retournant le thieboudienne souvent pour que tous les côtés soient bien cuits.
 Au moment de servir, placez le riz dans un plat et disposer les légumes et le poisson sur le dessus.""", softWrap: true, textAlign: TextAlign.justify)
-        ]
-      )
+            ]
+        )
     );
 
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Mes recettes"),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Mes recettes"),
-        ),
-        body: ListView(
-          children: [
-            CachedNetworkImage(
-              imageUrl: 'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              width: 600,
-              height: 350,
-              fit: BoxFit.cover,
-            ),
-            title_section,
-            buttonsSection,
-            descriptionSection
-          ],
-        )
+      body: ListView(
+        children: [
+          CachedNetworkImage(
+            imageUrl: 'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
+            placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            width: 600,
+            height: 350,
+            fit: BoxFit.cover,
+          ),
+          title_section,
+          buttonsSection,
+          descriptionSection
+        ],
       )
     );
   }
@@ -140,7 +148,8 @@ Au moment de servir, placez le riz dans un plat et disposer les légumes et le p
           padding: const EdgeInsets.only(bottom: 8),
           child: Icon(icon, color: color, size: 40,),
         ),
-        Text(label, style: TextStyle(color: color, fontSize: 28, fontWeight: FontWeight.w400))
+        Text(label, style: TextStyle(
+            color: color, fontSize: 28, fontWeight: FontWeight.w400))
       ],
     );
   }
