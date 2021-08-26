@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(MyApp());
@@ -95,9 +96,10 @@ On peut aussi ajouter: 1 manioc doux, 1 patate douce, un peu de poisson fumé
         ),
         body: ListView(
           children: [
-            FadeInImage.assetNetwork(
-              placeholder: 'images/loader.gif',
-              image: 'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
+            CachedNetworkImage(
+              imageUrl: 'http://www.recettesafricaine.com/wp-content/uploads/2016/10/xpicture3.jpg.pagespeed.ic_.sOoD_3xCgZ-768x652.jpg',
+              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
               width: 600,
               height: 350,
               fit: BoxFit.cover,
