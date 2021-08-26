@@ -6,12 +6,31 @@ class FavoriteWidget extends StatefulWidget {
 }
 
 class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
 
+  void _toggleFavorite(){
+    setState(() {
+      if(_isFavorited) {
+        _isFavorited = false;
+        _favoriteCount -= 1;
+      } else {
+        _isFavorited = true;
+        _favoriteCount += 1;
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.favorite, color: Colors.red, size: 40,),
-        Text("55", style: TextStyle(color: Colors.grey, fontSize: 28))
+        IconButton(
+          icon: _isFavorited ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+          color: Colors.red,
+          onPressed: _toggleFavorite,
+          iconSize: 40,),
+        Text('$_favoriteCount', style: TextStyle(color: Colors.grey, fontSize: 28))
       ],
     );
   }
