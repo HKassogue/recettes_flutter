@@ -30,7 +30,7 @@ class RecipeScreen extends StatelessWidget {
                 ],
               )
           ),
-          FavoriteWidget()
+          FavoriteWidget(isFavorite: false, favoriteCount: 44)
         ],
       ),
     );
