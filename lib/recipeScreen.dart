@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mon1erprojet/favoriteChangeNotifier.dart';
 import 'package:mon1erprojet/favoriteWidget.dart';
 import 'package:mon1erprojet/recipe.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 
 class RecipeScreen extends StatelessWidget {
   final Recipe recipe;
@@ -36,10 +38,8 @@ class RecipeScreen extends StatelessWidget {
                 ],
               )
           ),
-          FavoriteWidget(
-              isFavorite: recipe.isFavorite,
-              favoriteCount: recipe.fovoriteCount
-          )
+          FavoriteIconWidget(),
+          FavoriteTextWidget()
         ],
       ),
     );
@@ -71,25 +71,29 @@ class RecipeScreen extends StatelessWidget {
         )
     );
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Mes recettes"),
-        ),
-        body: ListView(
-          children: [
-            CachedNetworkImage(
-              imageUrl: recipe.imageUrl,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              width: 600,
-              height: 350,
-              fit: BoxFit.cover,
-            ),
-            title_section,
-            buttonsSection,
-            descriptionSection
-          ],
-        )
+    return ChangeNotifierProvider(
+      create: (context) => FavoriteChangeNotifier(
+          recipe.isFavorite, recipe.fovoriteCount),
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text("Mes recettes"),
+          ),
+          body: ListView(
+            children: [
+              CachedNetworkImage(
+                imageUrl: recipe.imageUrl,
+                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                width: 600,
+                height: 350,
+                fit: BoxFit.cover,
+              ),
+              title_section,
+              buttonsSection,
+              descriptionSection
+            ],
+          )
+      ),
     );
   }
 
