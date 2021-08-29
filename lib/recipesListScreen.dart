@@ -96,18 +96,18 @@ class RecipeItemWidget extends StatelessWidget {
         Navigator.push(
           context,
           PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  RecipeScreen(recipe: recipe),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                var begin = Offset(0.0, 1.0);
-                var end = Offset.zero;
-                var curve = Curves.ease;
-                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-                return SlideTransition(
-                  position: animation.drive(tween),
-                  child: child,
-                );
-              }
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                RecipeScreen(recipe: recipe),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+               animation = CurvedAnimation(
+                   parent: animation,
+                   curve: Curves.ease
+               );
+               return FadeTransition(
+                 opacity: animation,
+                 child: child,
+               );
+            }
           )
         );
       },
@@ -116,14 +116,17 @@ class RecipeItemWidget extends StatelessWidget {
         elevation: 8,
         child: Row (
           children: [
-            CachedNetworkImage(
-              imageUrl: recipe.imageUrl,
-              placeholder: (context, url) =>
-                  Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover
+            Hero(
+              tag: "imageRecipe" + recipe.title,
+              child: CachedNetworkImage(
+                imageUrl: recipe.imageUrl,
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(8),
