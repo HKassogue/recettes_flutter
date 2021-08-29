@@ -95,8 +95,18 @@ class RecipeItemWidget extends StatelessWidget {
       onTap: (){
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => RecipeScreen(recipe: recipe)
+          PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  RecipeScreen(recipe: recipe),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                var begin = Offset(0.0, 1.0);
+                var end = Offset.zero;
+                var tween = Tween(begin: begin, end: end);
+                return SlideTransition(
+                  position: animation.drive(tween),
+                  child: child,
+                );
+              }
           )
         );
       },
