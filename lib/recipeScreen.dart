@@ -76,7 +76,7 @@ class RecipeScreen extends StatelessWidget {
           recipe.isFavorite, recipe.fovoriteCount),
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Mes recettes"),
+            title: Text("Recettes du Mali"),
           ),
           body: ListView(
             children: [
