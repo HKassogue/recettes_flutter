@@ -2,7 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mon1erprojet/recipe.dart';
 
-class RecipesListScreen extends StatelessWidget {
+class RecipesListScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return RecipesListScreenState();
+  }
+}
+
+class RecipesListScreenState extends State<RecipesListScreen> {
   final List<Recipe> recipes = [
     Recipe("Zamè facile",
         "Oumou Bah",
@@ -57,7 +64,20 @@ class RecipesListScreen extends StatelessWidget {
       body: ListView.builder(
           itemCount: recipes.length, 
           itemBuilder: (context, index) {
-            return RecipeItemWidget(recipe: recipes[index]);
+            final recipe = recipes[index];
+            return Dismissible(
+                key: Key(recipe.title),
+                onDismissed: (direction){
+                  setState(() {
+                    recipes.removeAt(index);
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("${recipe.title} supprimé"))
+                  );
+                },
+                background: Container(color: Colors.redAccent),
+                child: RecipeItemWidget(recipe: recipe)
+            );
           }
       ),
     );
