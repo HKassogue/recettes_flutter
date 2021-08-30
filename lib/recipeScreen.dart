@@ -73,7 +73,7 @@ class RecipeScreen extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (context) => FavoriteChangeNotifier(
-          recipe.isFavorite, recipe.fovoriteCount),
+          recipe.isFavorite, recipe.favoriteCount),
       child: Scaffold(
           appBar: AppBar(
             title: Text("Recettes du Mali"),
