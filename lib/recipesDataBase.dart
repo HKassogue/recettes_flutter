@@ -1,43 +1,29 @@
-import 'package:flutter/widgets.dart';
 import 'package:mon1erprojet/recipe.dart';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class RecipeDataBase {
-  RecipeDataBase._();
+class RecipesDataBase {
+  static late Database db;
 
-  static final RecipeDataBase instance = RecipeDataBase._();
-  static Database _database;
-
-  Future<Database> get database async {
-    if(_database != null) return _database;
-    _database = await initDB();
-    return _database;
-  }
-
-  initDB() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    return await openDatabase(
-      join(await getDatabasesPath(), 'recipes_database.db'),
-      onCreate: (db, version) {
-        return db.execute("""
-          CREATE TABLE recipe(
-          title TEXT PRIMARY KEY,
-          author TEXT,
-          imageUrl TEXT,
-          ingredients TEXT,
-          preparation TEXT,
-          isFavorite INTEGER,
-          favoriteCount INTEGER)
-          """
-        );
-      },
-      version: 1
+  Future open(String path) async {
+    db = await openDatabase(
+      path,
+      version: 1,
+      onCreate: (db, version) async {
+        await db.execute("""
+        CREATE TABLE recipe(
+        title TEXT PRIMARY KEY,
+        author TEXT,
+        imageUrl TEXT,
+        ingredients TEXT,
+        preparation TEXT,
+        isFavorite INTEGER,
+        favoriteCount INTEGER)
+        """);
+      }
     );
   }
 
   void insert(Recipe recipe) async {
-    final Database db = await database;
     await db.insert(
       'recipe',
       recipe.toMap(),
@@ -46,7 +32,6 @@ class RecipeDataBase {
   }
 
   void update(Recipe recipe) async {
-    final Database db = await database;
     await db.update(
       'recipe',
       recipe.toMap(),
@@ -56,7 +41,6 @@ class RecipeDataBase {
   }
 
   void delete(String title) async {
-    final Database db = await database;
     await db.delete(
       'recipe',
       where: "title = ?",
@@ -65,7 +49,6 @@ class RecipeDataBase {
   }
 
   Future<List<Recipe>> recipes() async {
-    final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query('recipe');
     List<Recipe> recipes = List.generate(maps.length, (i) {
       return Recipe.fromMap(maps[i]);
@@ -78,6 +61,8 @@ class RecipeDataBase {
     }
     return recipes;
   }
+
+  Future close() async => db.close();
 
   final List<Recipe> defaultRecipes = [
     Recipe("Zamè facile",
