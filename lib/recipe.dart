@@ -20,17 +20,17 @@ class Recipe {
       'ingredients': ingredients,
       'preparation': preparation,
       'isFavorite': isFavorite,
-      'favoriteCount': favoriteCount,
+      'favoriteCount': favoriteCount
     };
   }
 
-  factory Recipe.fromMap(Map<String, dynamic> map) => Recipe(
+  factory Recipe.fromMap(Map<String, dynamic> map) => new Recipe(
     map['title'],
     map['author'],
     map['imageUrl'],
     map['ingredients'],
     map['preparation'],
     map['isFavorite'] == 1,
-    map['favoriteCount'],
+    map['favoriteCount']
   );
 }

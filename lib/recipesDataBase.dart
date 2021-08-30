@@ -3,11 +3,11 @@ import 'package:mon1erprojet/recipe.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class RecipeDataBase {
-  RecipeDataBase._();
+class RecipesDataBase {
+  RecipesDataBase._();
 
-  static final RecipeDataBase instance = RecipeDataBase._();
-  static Database _database;
+  static final RecipesDataBase instance = RecipesDataBase._();
+  static late Database _database;
 
   Future<Database> get database async {
     if(_database != null) return _database;
