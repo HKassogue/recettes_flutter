@@ -110,6 +110,11 @@ class RecipeItemWidget extends StatelessWidget {
             }
           )
         );
+        /*Navigator.pushNamed(
+            context,
+            '/recipe',
+            arguments: recipe
+        );*/
       },
       child: Card(
         margin: EdgeInsets.all(8),
