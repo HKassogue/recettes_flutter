@@ -4,7 +4,11 @@ import 'package:sqflite/sqflite.dart';
 class RecipesDataBase {
   static late Database db;
 
-  Future open(String path) async {
+  RecipesDataBase._();
+
+  static final RecipesDataBase instance = RecipesDataBase._();
+
+  Future open({path = 'recipe_database.db'}) async {
     db = await openDatabase(
       path,
       version: 1,
