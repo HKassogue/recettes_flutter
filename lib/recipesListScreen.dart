@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mon1erprojet/recipe.dart';
 import 'package:mon1erprojet/recipeBox.dart';
+import 'package:mon1erprojet/recipeFormScreen.dart';
 import 'package:mon1erprojet/recipeScreen.dart';
 
 class RecipesListScreen extends StatefulWidget {
@@ -45,7 +46,29 @@ class RecipesListScreenState extends State<RecipesListScreen> {
             }
           );
         }
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      RecipeFormScreen(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    animation = CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.ease
+                    );
+                    return FadeTransition(
+                      opacity: animation,
+                      child: child,
+                    );
+                  }
+              )
+          );
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
