@@ -22,6 +22,38 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Nouvelle recette"),
+      ),
+      body: Form(
+        key: formKey,
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 16.0, left: 16.0, right: 16.0, bottom: 8.0
+              ),
+              child: TextFormField(
+                controller: titleController,
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                  border: OutlineInputBorder(
+                    borderRadius:
+                    BorderRadius.all(Radius.circular(20.0))
+                  )
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter a title';
+                  }
+                  return null;
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
