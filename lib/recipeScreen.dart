@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mon1erprojet/favoriteChangeNotifier.dart';
 import 'package:mon1erprojet/favoriteWidget.dart';
 import 'package:mon1erprojet/recipe.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +11,7 @@ class RecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget title_section = Container(
+    Widget titleSection = Container(
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
@@ -72,8 +71,7 @@ class RecipeScreen extends StatelessWidget {
     );
 
     return ChangeNotifierProvider(
-      create: (context) => FavoriteChangeNotifier(
-          recipe.isFavorite, recipe.fovoriteCount),
+      create: (context) => FavoriteChangeNotifier(recipe),
       child: Scaffold(
           appBar: AppBar(
             title: Text("Recettes du Mali"),
@@ -91,7 +89,7 @@ class RecipeScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              title_section,
+              titleSection,
               buttonsSection,
               descriptionSection
             ],
