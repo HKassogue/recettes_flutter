@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mon1erprojet/recipe.dart';
+import 'package:mon1erprojet/recipeBox.dart';
 
 class RecipeFormScreen extends StatefulWidget {
   @override
@@ -147,6 +150,27 @@ class _RecipeFormScreenState extends State<RecipeFormScreen> {
                 },
               ),
             ),
+            SizedBox(height: 8.0),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    Recipe recipe = Recipe(
+                        titleController.value.text,
+                        authorController.value.text,
+                        urlController.value.text,
+                        ingredientsController.value.text,
+                        preparationController.value.text,
+                        false,
+                        new Random().nextInt(100)
+                    );
+                    RecipeBox.box.put(recipe.key(), recipe);
+                    Navigator.pop(context);
+                  }
+                },
+                child: Text('Enregistrer'),
+              ),
+            )
           ],
         ),
       ),
